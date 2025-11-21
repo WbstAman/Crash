@@ -9,7 +9,7 @@ import { FiTarget } from "react-icons/fi";
 import { FaHistory, FaTrophy } from "react-icons/fa";
 import { AiFillPlaySquare } from "react-icons/ai";
 import { LuClock4 } from "react-icons/lu";
-import CasinoIcon from "../../../assets/images/svgImages/CasinoIcon";
+import {CasinoIcon} from "../../../assets/images/svgImages/CasinoIcon";
 
 /* ------------------ menus ------------------ */
 const menuList = [
