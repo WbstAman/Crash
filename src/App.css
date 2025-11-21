@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+#root {
+  max-width: 1480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 20px;
+  text-align: center;
+}
+
+
+
+@theme {
+  /* Colors */
+
+  --color-white: #fff;
+  --color-black: black;
+  --color-black-light: #0e0e0d;
+
+  --color-gray-extra-light:#252721;  
+  --color-gray-light: #282A2F;
+  --color-gray-dark: #767b86;
+  --color-gray-extra-dark: #10100D;
+
+  --color-yellow-dark: #EAFF00;
+  --color-orange-dark: #FF9D02;
+ 
+  /* Font sizes */
+  --text-3xl: 80px;
+  --text-2xl: 80px;
+  --text-xl: 30px;
+  --text-md2: 20px;
+
+  --text-md: 17px;
+  --text-sm: 15px;
+  --text-xs: 12px;
+
+  /* Fonts */
+
+  --font-poppinsReg: "poppinsReg", sans-serif;
+  --font-collegeblock: "collegeblock", sans-serif;
+  --font-roboto: "roboto", sans-serif;
+
+  --animate-marquee: marquee 15s linear infinite;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* 'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px', */
+}
+ 
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+ 
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.crash-graph-container{
+  /* background:url("./assets/images/crash-game-bg.png");
+  background-size:cover; */
+  background: black;
+}

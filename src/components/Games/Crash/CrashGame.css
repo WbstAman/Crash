@@ -1,0 +1,170 @@
+/* CrashGame.css - simple layout + animations */
+.crash-wrap {
+  max-width: 920px;
+  margin: 18px auto;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f172a;
+}
+
+.title {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(20, 20, 30, 0.06);
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.panel.top {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.balance {
+  min-width: 160px;
+}
+.balance-amt {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-top: 6px;
+}
+
+.controls {
+  flex: 1;
+}
+
+.bet-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.bet-row label { min-width: 110px; }
+
+.bet-inputs {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.bet-inputs input[type="number"] {
+  width: 96px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ee;
+}
+
+.btn {
+  background: #f3f4f6;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn.small { padding: 6px 8px; font-size: 0.9rem; }
+.btn.start { background: #0ea5e9; color: white; }
+.btn.cashout { background: #10b981; color: white; }
+.btn.active { background: #fef08a; }
+
+.actions { margin-top: 6px; display:flex; gap:10px; }
+
+.panel.middle {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.multiplier-box {
+  flex: 1;
+}
+
+.multiplier-label { font-size: 0.9rem; color: #475569; }
+.multiplier {
+  margin-top: 8px;
+  font-size: 2.25rem;
+  font-weight: 800;
+}
+.multiplier.running {
+  color: #ef4444;
+  text-shadow: 0 6px 18px rgba(239,68,68,0.12);
+}
+
+.crash-info { margin-top: 6px; color: #64748b; font-size: 0.85rem; }
+
+.rocket-visual {
+  width: 160px;
+  height: 120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.rocket {
+  width: 36px;
+  height: 72px;
+  background: linear-gradient(180deg, #ef4444, #be123c);
+  border-radius: 6px;
+  transform-origin: center bottom;
+  transition: transform 0.12s linear;
+  box-shadow: 0 8px 18px rgba(14,165,233,0.12);
+}
+
+.panel.lower {
+  display: flex;
+  gap: 20px;
+}
+
+.message {
+  flex: 1;
+  font-weight: 600;
+  color: #334155;
+}
+
+.history {
+  width: 320px;
+}
+.history-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.hist-item {
+  display:flex;
+  justify-content:space-between;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px dashed #e6eef6;
+  align-items:center;
+}
+
+.hist-item.win { background: rgba(16,185,129,0.04); }
+.hist-item.loss { background: rgba(239,68,68,0.03); }
+
+.hist-mult { font-weight: 700; width: 80px; }
+.hist-res { color: #334155; width: 80px; }
+.hist-amount { font-weight: 700; }
+
+.no-history { color: #94a3b8; padding: 8px; }
+
+.disclaimer {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #64748b;
+}

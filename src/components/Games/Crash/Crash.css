@@ -1,0 +1,23 @@
+.game-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.game-subgrid {
+    display: flex;
+    background: #1A191D;
+    border: 1px solid #28272D;
+    padding: 7px 16px 9px 24px;
+    gap: 26px;
+    border-radius: 20px;
+}
+.game-sidebar {
+    max-width: 276px;
+    width: 100%;
+}
+.game-conetent {
+    max-width: calc(100% - 302px) ;
+    width: 100%;
+    background: #000000;
+    border-radius: 22px;
+}

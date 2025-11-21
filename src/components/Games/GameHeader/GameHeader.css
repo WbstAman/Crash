@@ -1,0 +1,12 @@
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.game-header-left h6 {
+    font-family: var( --inter-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 100%;
+    color: #fff;
+}
