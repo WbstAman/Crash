@@ -379,108 +379,156 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       ctx.restore();
 
     }
-      // Rocket Path Color
-      const strokeGrad = ctx.createLinearGradient(curveStartX, 0, endX, 0);
+    // Rocket Path Color
+
+    const score = Number(displayMultiplierRef.current); // numeric for comparisons
+
+
+    const strokeGrad = ctx.createLinearGradient(curveStartX, 0, endX, 0);
+
+    if (gameState === "crashed") {
+      // ✨ smooth light orange
+      strokeGrad.addColorStop(0, "#FFE7C2");   // soft pastel orange highlight
+      strokeGrad.addColorStop(0.35, "#FFC27A"); // warm light orange
+      strokeGrad.addColorStop(0.65, "#FF9B42"); // sunset orange
+      strokeGrad.addColorStop(1, "#FF7A00");    // bright orange (not dark brown)
+    }
+    else if (score < 5) {
+      // yellow / gold
       strokeGrad.addColorStop(0, "#E3E3DC");
       strokeGrad.addColorStop(0.4, "#625817");
       strokeGrad.addColorStop(0.65, "#ffb24a");
       strokeGrad.addColorStop(1, "#827522");
+    } else {
+      strokeGrad.addColorStop(0, "#FFE1E1");   // very light red
+      strokeGrad.addColorStop(0.35, "#FF9A9A"); // pastel red
+      strokeGrad.addColorStop(0.65, "#FF6B6B"); // warm soft red
+      strokeGrad.addColorStop(1, "#FF3D3D");    // bright red (not dark)
+    }
 
-      ctx.save();
-      ctx.lineWidth = 8;
-      ctx.lineCap = "butt";
-      ctx.lineJoin = "butt";
-      ctx.strokeStyle = strokeGrad;
-      ctx.globalCompositeOperation = "lighter";
-      ctx.shadowBlur = 28;
+    ctx.save();
+    ctx.lineWidth = 8;
+    ctx.lineCap = "butt";
+    ctx.lineJoin = "butt";
+    ctx.strokeStyle = strokeGrad;
+    ctx.globalCompositeOperation = "lighter";
+    ctx.shadowBlur = 28;
+    ctx.beginPath();
+    for (let i = 0; i <= idx0; i++) {
+      const p = points[i];
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    }
+    if (frac > 0) ctx.lineTo(rocketX, rocketY);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = strokeGrad;
+    for (let i = 0; i <= idx0; i++) {
+      const p = points[i];
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    }
+    if (frac > 0) ctx.lineTo(rocketX, rocketY);
+    ctx.stroke();
+
+    // trail, rocket glow
+    const trailLen = 28;
+    const startTrailIdx = Math.max(0, idx0 - trailLen);
+    for (let i = startTrailIdx; i <= idx0; i++) {
+      const p = points[i];
+      const age = idx0 - i;
+      const alpha = Math.max(0, 1 - age / (trailLen + 2));
+      const r = Math.max(2, 12 * (1 - age / (trailLen + 1)));
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 3);
+      g.addColorStop(0, `rgba(255,230,160,${0.95 * alpha})`);
+      g.addColorStop(0.5, `rgba(255,150,40,${0.35 * alpha})`);
+      g.addColorStop(1, `rgba(255,120,30,0)`);
+      ctx.fillStyle = g;
       ctx.beginPath();
-      for (let i = 0; i <= idx0; i++) {
-        const p = points[i];
-        if (i === 0) ctx.moveTo(p.x, p.y);
-        else ctx.lineTo(p.x, p.y);
-      }
-      if (frac > 0) ctx.lineTo(rocketX, rocketY);
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.beginPath();
-      ctx.lineWidth = 6;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.strokeStyle = strokeGrad;
-      for (let i = 0; i <= idx0; i++) {
-        const p = points[i];
-        if (i === 0) ctx.moveTo(p.x, p.y);
-        else ctx.lineTo(p.x, p.y);
-      }
-      if (frac > 0) ctx.lineTo(rocketX, rocketY);
-      ctx.stroke();
-
-      // trail, rocket glow
-      const trailLen = 28;
-      const startTrailIdx = Math.max(0, idx0 - trailLen);
-      for (let i = startTrailIdx; i <= idx0; i++) {
-        const p = points[i];
-        const age = idx0 - i;
-        const alpha = Math.max(0, 1 - age / (trailLen + 2));
-        const r = Math.max(2, 12 * (1 - age / (trailLen + 1)));
-        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 3);
-        g.addColorStop(0, `rgba(255,230,160,${0.95 * alpha})`);
-        g.addColorStop(0.5, `rgba(255,150,40,${0.35 * alpha})`);
-        g.addColorStop(1, `rgba(255,120,30,0)`);
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      ctx.beginPath();
-      ctx.fillStyle = "#ffffff";
-      ctx.arc(rocketX, rocketY, 6, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
       ctx.fill();
-      ctx.beginPath();
-      ctx.fillStyle = "#ff9900";
-      ctx.arc(rocketX, rocketY, 3, 0, Math.PI * 2);
-      ctx.fill();
+    }
 
-      const lookaheadIndex = Math.min(totalPoints, Math.floor(fi + 3));
-      const lookahead = points[lookaheadIndex];
-      const dx = lookahead.x - rocketX;
-      const dy = lookahead.y - rocketY;
-      const rocketAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+    ctx.beginPath();
+    ctx.fillStyle = "#ffffff";
+    ctx.arc(rocketX, rocketY, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.fillStyle = "#ff9900";
+    ctx.arc(rocketX, rocketY, 3, 0, Math.PI * 2);
+    ctx.fill();
 
-      ctx.save();
-      const glowRadius = 60;
-      const rg = ctx.createRadialGradient(rocketX, rocketY, 0, rocketX, rocketY, glowRadius);
-      rg.addColorStop(0, "rgba(255,220,120,0.95)");
-      rg.addColorStop(0.2, "rgba(255,170,60,0.5)");
-      rg.addColorStop(1, "rgba(255,120,20,0)");
-      ctx.globalCompositeOperation = "lighter";
-      ctx.fillStyle = rg;
-      ctx.beginPath();
-      ctx.arc(rocketX, rocketY, glowRadius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
+    const lookaheadIndex = Math.min(totalPoints, Math.floor(fi + 3));
+    const lookahead = points[lookaheadIndex];
+    const dx = lookahead.x - rocketX;
+    const dy = lookahead.y - rocketY;
+    const rocketAngle = Math.atan2(dy, dx) * (180 / Math.PI);
 
-      rocketEl.style.opacity = "1";
-      rocketEl.style.left = `${rocketX}px`;
-      rocketEl.style.top = `${rocketY}px`;
-      rocketEl.style.transform = `translate(-50%, -50%) rotate(${rocketAngle}deg) scale(${gameState === "crashed" ? 1.05 : 1})`;
-      rocketEl.style.filter =
-        "drop-shadow(0 0 14px rgba(255, 240, 100, 0.95))";
-      // center text
-      ctx.shadowBlur = 8;
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 64px Inter, sans-serif";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(`${displayMultiplierRef.current.toFixed(2)}x`, cssW / 2, cssH / 2 - 10);
-      ctx.shadowBlur = 0;
-      ctx.font = "bold 16px Inter, sans-serif";
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
-      ctx.fillText(`Current payout`, cssW / 2, cssH / 2 + 30);
-    };
-   // RAF loop
+    ctx.save();
+    const glowRadius = 60;
+    const rg = ctx.createRadialGradient(rocketX, rocketY, 0, rocketX, rocketY, glowRadius);
+    rg.addColorStop(0, "rgba(255,220,120,0.95)");
+    rg.addColorStop(0.2, "rgba(255,170,60,0.5)");
+    rg.addColorStop(1, "rgba(255,120,20,0)");
+    ctx.globalCompositeOperation = "lighter";
+    ctx.fillStyle = rg;
+    ctx.beginPath();
+    ctx.arc(rocketX, rocketY, glowRadius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    rocketEl.style.opacity = "1";
+    rocketEl.style.left = `${rocketX}px`;
+    rocketEl.style.top = `${rocketY}px`;
+    rocketEl.style.transform = `translate(-50%, -50%) rotate(${rocketAngle}deg) scale(${gameState === "crashed" ? 1.05 : 1})`;
+    rocketEl.style.filter =
+      "drop-shadow(0 0 14px rgba(255, 240, 100, 0.95))";
+
+    //  let score = Number(displayMultiplierRef.current);
+
+    // text color logic
+    let textColor;
+    let textGlow;
+
+    if (gameState === "crashed") {
+      textColor = "#FF7A00";         // orange
+      textGlow = "rgba(70,145,255,0.55)";  // little blue glow
+    } else if (score >= 5) {
+      textColor = "#FF6B6B";              // smooth light red (matches the curve)
+      textGlow = "rgba(255,140,140,0.55)"; // soft bright red glow — not too strong
+
+    } else {
+      textColor = "#FFC645";         // gold
+      textGlow = "rgba(255,200,60,0.45)";
+    }
+
+    ctx.shadowBlur = 28;             // blur makes the glow soft
+    ctx.shadowColor = textGlow;
+    ctx.fillStyle = textColor;
+    ctx.font = "bold 64px Inter, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(`${displayMultiplierRef.current.toFixed(2)}x`, cssW / 2, cssH / 2 - 10);
+
+    // center text
+    // ctx.shadowBlur = 8;
+    // ctx.fillStyle = "#ffffff";
+    // ctx.font = "bold 64px Inter, sans-serif";
+    // ctx.textAlign = "center";
+    // ctx.textBaseline = "middle";
+    // ctx.fillText(`${displayMultiplierRef.current.toFixed(2)}x`, cssW / 2, cssH / 2 - 10);
+    ctx.shadowBlur = 0;
+    ctx.font = "bold 16px Inter, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.fillText(`Current payout`, cssW / 2, cssH / 2 + 30);
+  };
+  // RAF loop
+  // RAF loop
   useEffect(() => {
     let lastTs = performance.now();
     const stepFn = (ts) => {
@@ -490,12 +538,19 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       if (multiplier > maxSeenRef.current) maxSeenRef.current = multiplier * 1.25;
 
       const cur = displayMultiplierRef.current;
-      const target = multiplier;
+
+      // 🔥 IMPORTANT: don't chase multiplier when crashed
+      const target =
+        gameState === "crashed" ? cur : multiplier;
+
       const stiffness = 8.0;
       const delta = target - cur;
       const change = delta * (1 - Math.exp(-stiffness * dt));
       displayMultiplierRef.current = cur + change;
-      if (Math.abs(displayMultiplierRef.current - target) < 0.0005) displayMultiplierRef.current = target;
+
+      if (Math.abs(displayMultiplierRef.current - target) < 0.0005)
+        displayMultiplierRef.current = target;
+
       try {
         draw();
       } catch (e) {
@@ -567,10 +622,12 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       setWindowIndex(0);
       setPulseRight(false);
       prevNormalizedRef.current = 0;
-      displayMultiplierRef.current = multiplier;
-    } else if (gameState === "crashed") {
-      displayMultiplierRef.current = multiplier;
+      displayMultiplierRef.current = 1.0;
+      // displayMultiplierRef.current = multiplier;
     }
+    // else if (gameState === "crashed") {
+    //   displayMultiplierRef.current = multiplier;
+    // }
 
     return () => {
       if (tickId) clearInterval(tickId);
