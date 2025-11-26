@@ -360,8 +360,6 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
     const rocketY = p0.y + (p1.y - p0.y) * frac;
 
     if (gameState !== "crashed") {
-
-
       // area under curve
       ctx.save();
       const areaGrad = ctx.createLinearGradient(0, endY, 0, startY);
@@ -380,6 +378,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       ctx.fill();
       ctx.restore();
 
+    }
       // Rocket Path Color
       const strokeGrad = ctx.createLinearGradient(curveStartX, 0, endX, 0);
       strokeGrad.addColorStop(0, "#E3E3DC");
@@ -481,7 +480,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       ctx.fillStyle = "rgba(255,255,255,0.85)";
       ctx.fillText(`Current payout`, cssW / 2, cssH / 2 + 30);
     };
-  }
+  // }
   // RAF loop
   useEffect(() => {
     let lastTs = performance.now();

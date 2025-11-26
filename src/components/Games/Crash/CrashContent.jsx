@@ -31,7 +31,9 @@ const CrashContent = () => {
 
     if (gameState === "waiting" && countdown === 0) {
       const newCrashPoint = generateCrashPoint();
-      setCrashPoint(parseFloat(newCrashPoint));
+      // setCrashPoint(parseFloat(newCrashPoint));
+      setCrashPoint(parseFloat(2.5));
+
       setGameState("running");
       setMultiplier(1.0);
     }
@@ -45,7 +47,13 @@ useEffect(() => {
       const next = prev + 0.01;
 
       if (next >= crashPoint) {
-        setGameState("crashed");
+        // setGameState("crashed");
+
+
+        setTimeout(() => {
+          setGameState("crashed");
+        }, 200);
+
         setHistory((prevHistory) => [
           parseFloat(crashPoint.toFixed(2)),
           ...prevHistory.slice(0, 19),
