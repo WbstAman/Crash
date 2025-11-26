@@ -11,13 +11,13 @@ const CrashContent = () => {
   const [history, setHistory] = useState([]);
   const [countdown, setCountdown] = useState(3);
 
-  const generateCrashPoint = () => {
-    const random = Math.random();
-    if (random < 0.5) return (1 + Math.random() * 2).toFixed(2);
-    if (random < 0.8) return (2 + Math.random() * 3).toFixed(2);
-    if (random < 0.95) return (5 + Math.random() * 5).toFixed(2);
-    return (10 + Math.random() * 10).toFixed(2);
-  };
+const generateCrashPoint = () => {
+  const random = Math.random();
+  if (random < 0.5) return (1 + Math.random() * 2).toFixed(2);   // 1 → 3
+  if (random < 0.8) return (2 + Math.random() * 3).toFixed(2);   // 2 → 5
+  if (random < 0.95) return (5 + Math.random() * 5).toFixed(2);  // 5 → 10
+  return (5 + Math.random() * 5).toFixed(2);                     // 5 → 10 (instead of 10 → 20)
+};
 
   useEffect(() => {
     if (gameState === "waiting" && countdown > 0) {
@@ -31,9 +31,7 @@ const CrashContent = () => {
 
     if (gameState === "waiting" && countdown === 0) {
       const newCrashPoint = generateCrashPoint();
-      // setCrashPoint(parseFloat(newCrashPoint));
-      setCrashPoint(parseFloat(2.5));
-
+      setCrashPoint(parseFloat(newCrashPoint));
       setGameState("running");
       setMultiplier(1.0);
     }
@@ -47,13 +45,9 @@ useEffect(() => {
       const next = prev + 0.01;
 
       if (next >= crashPoint) {
-        // setGameState("crashed");
-
-
         setTimeout(() => {
           setGameState("crashed");
         }, 200);
-
         setHistory((prevHistory) => [
           parseFloat(crashPoint.toFixed(2)),
           ...prevHistory.slice(0, 19),

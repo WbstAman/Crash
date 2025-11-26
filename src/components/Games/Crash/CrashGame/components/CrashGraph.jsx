@@ -480,8 +480,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       ctx.fillStyle = "rgba(255,255,255,0.85)";
       ctx.fillText(`Current payout`, cssW / 2, cssH / 2 + 30);
     };
-  // }
-  // RAF loop
+   // RAF loop
   useEffect(() => {
     let lastTs = performance.now();
     const stepFn = (ts) => {
