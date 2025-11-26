@@ -59,7 +59,7 @@ useEffect(() => {
         setTimeout(() => {
           setGameState("waiting");
           setCountdown(5);
-        }, 1000); // 1 second instead of 2000
+        }, 2000); // 1 second instead of 2000
 
         return parseFloat(crashPoint.toFixed(2));
       }
