@@ -32,5 +32,16 @@ export const otherMenu = [
     isParent: false,
     isActive: true,
   },
-
 ]
+
+
+ export const tabsMenu = [
+    {
+      title: "Manual",
+      isActive: true,
+    },
+    {
+      title: "Auto",
+      isActive: false,
+    }
+  ]

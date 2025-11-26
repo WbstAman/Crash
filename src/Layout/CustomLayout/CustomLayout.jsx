@@ -9,9 +9,9 @@ const CustomLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex justify-between w-full mx-auto pt-6">
+    <div className="h-screen flex justify-between w-full mx-auto overflow-hidden">
       <SideBarMenu isOpen={isOpen} />
-      <div className="w-full max-w-[1136px] gap-3">
+      <div className="w-full max-w-[1140px] gap-3 ">
         <Header toggleSidebar={() => setIsOpen(!isOpen)} />
         <main className="w-full">{children}</main>
       </div>

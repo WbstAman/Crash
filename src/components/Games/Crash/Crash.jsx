@@ -5,15 +5,17 @@ import CrashSidebar from "./CrashSidebar"
 import "./Crash.css"
 const Crash = () => {
   return (
-    <div className='carsh-game'>
-      <div className="game-grid">
-        <GameHeader gameName="Crash" />
+    <div className="bg-[#132633] rounded-xl"  style={{padding:"6px 6px 12px 12px"}}>
+       <div className="game-grid">
         <div className="game-subgrid">
-          {/* <CrashSidebar /> */}
+          <CrashSidebar />
           <CrashGame />
         </div>
       </div>
-    </div>
+    {/* </div> */}
+        <GameHeader gameName="Crash" />
+
+  </div>
   )
 }
 

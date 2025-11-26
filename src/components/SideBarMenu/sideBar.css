@@ -5,23 +5,68 @@
 .glowEffect::after {
   content: "";
   position: absolute;
-  bottom: 0px;
-  left: 0;
-  height: 2px;
-  border-radius: 50%;
-  background: #eaff00;
+  inset: 0;
+  border-radius: 4px;
   background: radial-gradient(
-    circle,
-    rgba(234, 255, 0, 1) 36%,
-    rgba(163, 181, 125, 1) 79%
-  );
-  width: 90%;
-      margin: auto;
-    left: 0;
-    right: 0;
-
+      100% 384% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    ),
+    radial-gradient(
+      50% 192% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    ),
+    radial-gradient(
+      26% 102% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    );
 }
 
-.glowEffect:hover{
-  position: unset;
+/* white bar only for parent */
+.glowEffect::before {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 3px;
+  height: 28px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+/* remove white bar from submenu (active + hover) */
+.submenu-item.glowEffect::before,
+.submenu-item:hover.glowEffect::before {
+  display: none !important;
+}
+
+/* ✨ hover glow for all */
+.menu-item:hover {
+  position: relative;
+}
+.menu-item:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: radial-gradient(
+      100% 384% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    ),
+    radial-gradient(
+      50% 192% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    ),
+    radial-gradient(
+      26% 102% at 100% 50%,
+      rgba(234, 255, 0, 0.12) 0%,
+      rgba(234, 255, 0, 0) 100%
+    );
 }

@@ -1,95 +1,164 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MdExpandLess, MdExpandMore, MdOutlineSportsRugby } from "react-icons/md";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { useNavigate } from "react-router";
 import { pathConstant } from "../../../navigation/pathConstant";
+import logo from "../../../assets/images/logo.png";
+import CashrakeGamesIcon from "../../../assets/images/svgImages/CashrakeGamesIcon";
+import GameShowsIcon from "../../../assets/images/svgImages/GameShowsIcon";
+import { HighRTPIcon } from "../../../assets/images/svgImages/HighRTPIcon";
+import LiveCasinoIcon from "../../../assets/images/svgImages/LiveCasinoIcon";
+import LobbyIcon from "../../../assets/images/svgImages/LobbyIcon";
+import NewSlotIcon from "../../../assets/images/svgImages/NewSlotIcon";
+import PopularSlots from "../../../assets/images/svgImages/PopularSlots";
+import ProvidersIcon from "../../../assets/images/svgImages/ProvidersIcon";
+import TableGamesIcon from "../../../assets/images/svgImages/TableGamesIcon";
+import ThunderIcon from "../../../assets/images/svgImages/ThunderIcon";
+import VideoPokerIcon from "../../../assets/images/svgImages/VideoPokerIcon";
+import SportsIcon from "../../../assets/images/svgImages/sportsIcon";
+import GiveawaysIcon from "../../../assets/images/svgImages/GiveawaysIcon";
+import PromotionsIcon from "../../../assets/images/svgImages/PromotionsIcon";
+import SponsorshipsIcon from "../../../assets/images/svgImages/SponsorshipsIcon";
+import StreamsIcons from "../../../assets/images/svgImages/StreamsIcons";
+import SupportIcon from "../../../assets/images/svgImages/SupportIcon";
+import AffiliateIcon from "../../../assets/images/svgImages/AffiliateIcon";
+import shortLogo from "../../../assets/images/shortLogo.png"
 import "../sideBar.css";
-
-import Ball from "../../../assets/images/svgImages/ball";
-import { FiTarget } from "react-icons/fi";
-import { FaHistory, FaTrophy } from "react-icons/fa";
-import { AiFillPlaySquare } from "react-icons/ai";
-import { LuClock4 } from "react-icons/lu";
 
 /* ------------------ menus ------------------ */
 const menuList = [
   {
-    title: "Sports",
-    value: "sports",
-    icon: <Ball className="text-white text-xl" />,
+    title: "Casino",
+    value: "casino",
+    icon: <CasinoIcon className="text-white text-md2" />,
     isParent: false,
     subMenu: [
       {
-        title: "My Profile",
-        value: "my_profile",
-        icon: <FiTarget className="text-white" />,
+        title: "Bonus Buy Hub",
+        value: "bonus-buy-hub",
+        icon: "",
         isParent: false,
         subMenu: [],
         isActive: true,
       },
       {
-        title: "Picks Center",
-        value: "picks_center",
-        icon: <FiTarget className="text-white" />,
+        title: "Spin Your Balance",
+        value: "spin-your-balance",
+        icon: "",
         isParent: true,
         isActive: true,
         subMenu: [],
       },
     ],
+    isActive: true,
+  },
+  {
+    title: "Lobby",
+    value: "lobby",
+    icon: <LobbyIcon className="text-white text-md2" />,
+    isParent: false,
+    subMenu: [],
     isActive: false,
   },
   {
-    title: "Sports Lobby",
-    value: "sports_lobby",
-    icon: <MdOutlineSportsRugby className="text-white text-xl" />,
+    title: "Crash Games",
+    value: "crash-games",
+    icon: <ThunderIcon className="text-white text-md2" />,
     isParent: true,
     isActive: true,
     subMenu: [],
   },
   {
-    title: "In-Play",
-    value: "in_play",
-    icon: <AiFillPlaySquare className="text-white text-xl" />,
+    title: "New Slots",
+    value: "new_slots",
+    icon: <NewSlotIcon className="text-white text-md2" />,
     isParent: true,
     isActive: true,
     subMenu: [],
   },
   {
-    title: "Upcoming",
-    value: "upcoming",
-    icon: <LuClock4 className="text-white text-xl" />,
+    title: "Popular Slots",
+    value: "popular_slots",
+    icon: <PopularSlots className="text-white text-md2" />,
     isParent: true,
     isActive: true,
     subMenu: [],
   },
   {
-    title: "Outrights",
-    value: "outrights",
-    icon: <FaTrophy className="text-white text-xl" />,
+    title: "High RTP",
+    value: "high_rtp",
+    icon: <HighRTPIcon className="text-white text-md2" />,
     isParent: true,
     isActive: true,
     subMenu: [],
   },
-];
+  {
+    title: "Table Games",
+    value: "tableGames",
+    icon: <TableGamesIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Video Poker",
+    value: "video_poker",
+    icon: <VideoPokerIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Live Casino",
+    value: "live_casino",
+    icon: <LiveCasinoIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Game Shows",
+    value: "game_shows",
+    icon: <GameShowsIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Cashrake Games",
+    value: "cashrake_games",
+    icon: <CashrakeGamesIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Providers",
+    value: "providers",
+    icon: <ProvidersIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
 
-const casinoMenu = [
+
   {
-    title: "Casino",
-    value: "casino",
-    icon: <CasinoIcon className="text-white text-xl" />,
+    title: "Sports",
+    value: "sports",
+    icon: <SportsIcon className="text-white text-md2" />,
     isParent: false,
     subMenu: [
       {
-        title: "Blackjack",
-        value: "blackjack",
-        icon: <FiTarget className="text-white" />,
+        title: "Bonus Buy Hub",
+        value: "bonus-buy-hub",
+        icon: "",
         isParent: false,
         subMenu: [],
         isActive: true,
       },
       {
-        title: "Roulette",
-        value: "roulette",
-        icon: <FiTarget className="text-white" />,
+        title: "Spin Your Balance",
+        value: "spin-your-balance",
+        icon: "",
         isParent: true,
         isActive: true,
         subMenu: [],
@@ -97,113 +166,178 @@ const casinoMenu = [
     ],
     isActive: true,
   },
+
+  {
+    title: "Giveaways",
+    value: "giveaways",
+    icon: <GiveawaysIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Promotions",
+    value: "promotions",
+    icon: <PromotionsIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+  {
+    title: "Sponsorships",
+    value: "sponsorships",
+    icon: <SponsorshipsIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [
+      {
+        title: "Bonus Buy Hub",
+        value: "bonus-buy-hub",
+        icon: "",
+        isParent: false,
+        subMenu: [],
+        isActive: true,
+      },
+      {
+        title: "Spin Your Balance",
+        value: "spin-your-balance",
+        icon: "",
+        isParent: true,
+        isActive: true,
+        subMenu: [],
+      },
+    ],
+  },
+  {
+    title: "Watch Streams",
+    value: "watch_streams",
+    icon: <StreamsIcons className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  },
+
+  {
+    title: "Support",
+    value: "support",
+    icon: <SupportIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [
+      {
+        title: "Bonus Buy Hub",
+        value: "bonus-buy-hub",
+        icon: "",
+        isParent: false,
+        subMenu: [],
+        isActive: true,
+      },
+      {
+        title: "Spin Your Balance",
+        value: "spin-your-balance",
+        icon: "",
+        isParent: true,
+        isActive: true,
+        subMenu: [],
+      },
+    ],
+  },
+  {
+    title: "Affiliate",
+    value: "affiliate",
+    icon: <AffiliateIcon className="text-white text-md2" />,
+    isParent: true,
+    isActive: true,
+    subMenu: [],
+  }
 ];
 
 
+
 const RecursiveMenu = ({ menu, openItems, activePath, onLeafClick, onParentToggle, menuRoot }) => {
-  // refs for measuring submenu heights
   const submenuRefs = useRef({});
 
-  // helper to get appropriate maxHeight for a submenu container
   const getMaxHeightStyle = (value) => {
     const el = submenuRefs.current[value];
-    // if open and measured, set maxHeight to scrollHeight px, else 0
     if (openItems[value] && el) {
       return { maxHeight: `${el.scrollHeight}px` };
     }
     return { maxHeight: "0px" };
   };
 
-  const renderMenu = (items, level = 0) =>
-    items.map((item) => {
-      const isOpen = !!openItems[item.value];
-      const hasChildren = item.subMenu && item.subMenu.length > 0;
-      const isActive = activePath.includes(item.value);
+const renderMenu = (items, level = 0) =>
+  items.map((item) => {
+    const isOpen = !!openItems[item.value];
+    const hasChildren = item.subMenu && item.subMenu.length > 0;
 
-      return (
-        <div key={item.value}>
-          <div
-            onClick={() => {
-              if (hasChildren) {
-                onParentToggle(item.value);
-              } else {
-                onLeafClick(item.value, menuRoot);
-              }
-            }}
-            className={`group flex items-center cursor-pointer py-3 px-3 transition-all rounded-md
-              hover:bg-yellow-dark
-              ${isActive ? "bg-yellow-dark" : ""}
-              ${!item.isParent ? "glowEffect" : ""}
-            `}
-            style={{ paddingLeft: `${level * 16 + 12}px` }}
-          >
-            {/* Icon Wrapper */}
-            <div
-              className={`
-                w-6 h-6 flex justify-center items-center rounded-full mr-3
-                ${isActive ? "bg-white/80" : "bg-primary"}
-              `}
-            >
-              {React.cloneElement(item.icon, {
+    const lastIndex = activePath.length - 1;
+    const isLeafActive = lastIndex >= 0 && activePath[lastIndex] === item.value;
+    const isParentActive =
+      activePath.length > 1 && activePath[lastIndex - 1] === item.value;
+    const isActive = isLeafActive || isParentActive;
+    const isSubMenu = level > 0; // <-- this line identifies submenus
+
+    return (
+      <div key={item.value}>
+        <div
+          onClick={() => {
+            if (hasChildren) onParentToggle(item.value);
+            else onLeafClick(item.value, menuRoot);
+          }}
+      className={`menu-item group flex items-center cursor-pointer py-3 px-3 transition-all rounded-[4px]
+  ${isActive ? "glowEffect" : ""}
+  ${isSubMenu ? "submenu-item" : ""}
+`}
+
+        >
+          {item?.icon && (
+            <div className="w-6 h-6 flex justify-center items-center rounded-full mr-3 text-white">
+              {React.cloneElement(item?.icon, {
                 className: `
                   text-xl transition-colors duration-200
                   ${isActive ? "text-black" : "text-white"}
-                  group-hover:text-black
                 `,
               })}
             </div>
+          )}
 
-            {/* Title */}
-            <h4
-              className={`
-                text-sm font-bold transition-all duration-200
-                ${isActive ? "text-black" : "text-white"}
-                group-hover:text-black
-              `}
+          <h4 className="text-xs font-semibold transition-all duration-200 text-white font-instrumentSans">
+            {item.title}
+          </h4>
+
+          <div className="ml-auto">
+            {hasChildren && (
+              <span
+                className={`inline-block transform transition-transform duration-300 ${
+                  isOpen ? "rotate-180" : "rotate-0"
+                }`}
+              >
+                {isOpen ? (
+                  <MdExpandLess className="text-white text-md2" />
+                ) : (
+                  <MdExpandMore className="text-white text-md2" />
+                )}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {hasChildren && (
+          <div
+            className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+            style={getMaxHeightStyle(item.value)}
+          >
+            <div
+              ref={(el) => (submenuRefs.current[item.value] = el)}
+              className="pl-2"
             >
-              {item.title}
-            </h4>
-
-            {/* Arrow (rotate when open) */}
-            <div className="ml-auto">
-              {hasChildren && (
-                <span
-                  className={`inline-block transform transition-transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"
-                    }`}
-                >
-                  {isOpen ? (
-                    <MdExpandLess className={`${isActive ? "text-black" : "text-white"} text-md2`} />
-                  ) : (
-                    <MdExpandMore className={`${isActive ? "text-black" : "text-white"} text-md2`} />
-                  )}
-                </span>
-              )}
+              {renderMenu(item.subMenu, level + 1)}
             </div>
           </div>
-
-          {/* Submenu container — always mounted, but height-animated for smooth transitions */}
-          {hasChildren && (
-            <div
-              // outer animated container
-              className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-              style={getMaxHeightStyle(item.value)}
-            // we store the inner content element so scrollHeight can be measured
-            >
-              <div
-                ref={(el) => {
-                  // store the inner content element to measure scrollHeight
-                  submenuRefs.current[item.value] = el;
-                }}
-                // small left padding for nested items
-                className="pl-2"
-              >
-                {renderMenu(item.subMenu, level + 1)}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    });
+        )}
+      </div>
+    );
+  });
 
   return <div>{renderMenu(menu)}</div>;
 };
@@ -221,7 +355,7 @@ const SideBarTopMenu = ({ isOpen }) => {
       setOpenItems({});
     }
   }, [isOpen]);
-
+ 
   // utility: find path from root menu array to target value
   const findPath = (items, target, path = []) => {
     for (const it of items) {
@@ -278,21 +412,16 @@ const SideBarTopMenu = ({ isOpen }) => {
     }
   };
 
+  const navigate = useNavigate()
   return (
     <>
-      <div className="text-white w-full overflow-y-auto h-auto">
-        <div className="mb-3 bg-gray-extra-dark border border-gray-extra-light rounded-2xl">
-          <RecursiveMenu
-            menu={casinoMenu}
-            menuRoot={casinoMenu}
-            openItems={openItems}
-            activePath={activePath}
-            onLeafClick={handleLeafClick}
-            onParentToggle={handleParentToggle}
-          />
+      <div className="text-white w-full overflow-y-auto h-auto pt-6">
+
+        <div className="max-w-[255px] w-full cursor-pointer mb-4" onClick={() => navigate("/")}>
+          <img src={isOpen ? logo : shortLogo} alt={logo} />
         </div>
 
-        <div className="bg-gray-extra-dark border border-gray-extra-light rounded-2xl">
+        <div className="">
           <RecursiveMenu
             menu={menuList}
             menuRoot={menuList}
@@ -310,7 +439,7 @@ const SideBarTopMenu = ({ isOpen }) => {
 export default SideBarTopMenu;
 
 
-function CasinoIcon  ({ size = 30, color = "#fff" }) {
+function CasinoIcon({ size = 20, color = "#fff" }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg"
       width={size}
@@ -326,5 +455,6 @@ function CasinoIcon  ({ size = 30, color = "#fff" }) {
           <rect width="200" height="200" fill={color} />
         </clipPath>
       </defs>
-    </svg>)
+    </svg>
+  )
 }

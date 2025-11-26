@@ -1,7 +1,7 @@
 import React from "react";
 
 const CustomButton = ({
-  title = "Click Me",
+   title = "Click Me",
   onClick,
   icon = null,       // 👈 optional icon
   variant = "default",
@@ -25,8 +25,8 @@ const CustomButton = ({
       disabled={disabled}
       style={{ maxWidth: size !== "auto" ? `${size}px` : "auto" }}
       className={`
-        flex items-center justify-center gap-2
-        text-black cursor-pointer
+         flex items-center justify-center gap-2
+        text-black cursor-pointer 
         rounded-lg p-2.5 font-bold w-full transition
         ${disabled ? "bg-gray-400 cursor-not-allowed" : variantStyles[variant]}
         ${className}

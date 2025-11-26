@@ -8,7 +8,16 @@
   text-align: center;
 }
 
+@font-face {
+  font-family: "InstrumentSans";
+  src: url("./assets/fonts/InstrumentSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
 
+* {
+  font-family: "InstrumentSans";
+}
 
 @theme {
   /* Colors */
@@ -17,17 +26,24 @@
   --color-black: black;
   --color-black-light: #0e0e0d;
 
-  --color-gray-extra-light:#252721;  
-  --color-gray-light: #282A2F;
+  --color-gray-extra-light: #252721;
+  --color-gray-light: #192c35;
   --color-gray-dark: #767b86;
-  --color-gray-extra-dark: #10100D;
+  --color-gray-extra-dark: #10100d;
+  --color-gray: #92aab7;
 
-  --color-yellow-dark: #EAFF00;
-  --color-orange-dark: #FF9D02;
- 
+  --color-yellow-dark: #eaff00;
+  --color-orange-dark: #ff9d02;
+
+  --color-primary-gray: "#0f2a3d";
+  --color-primary-black: "#091B26";
+  --color-grayborder: "#466273";
+  /* --color-primary-black:"red";
+  --color-grayborder:"green"; */
+
   /* Font sizes */
   --text-3xl: 80px;
-  --text-2xl: 80px;
+  --text-2xl: 45px;
   --text-xl: 30px;
   --text-md2: 20px;
 
@@ -37,7 +53,7 @@
 
   /* Fonts */
 
-  --font-poppinsReg: "poppinsReg", sans-serif;
+  --font-instrumentSans: "InstrumentSans", sans-serif;
   --font-collegeblock: "collegeblock", sans-serif;
   --font-roboto: "roboto", sans-serif;
 
@@ -58,53 +74,92 @@
       'xl': '1280px',
       '2xl': '1536px', */
 }
- 
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
- 
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.hideScrollBar {
+  overflow-y: scroll;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Hide scrollbar (Chrome, Safari, Edge) */
+.hideScrollBar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar (Firefox) */
+.hideScrollBar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ////////////////////////// */
+
+.bets-scroll::-webkit-scrollbar-thumb {
+  background: #18303b;
+  border-radius: 999px;
+  /* box-shadow: 0 0 6px rgba(217, 255, 0, 0.7); */
+}
+
+.bets-scroll::-webkit-scrollbar {
+  width: 9px;
+}
+
+.bets-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bets-scroll::-webkit-scrollbar-thumb {
+  background: #18303b; /* bright neon yellow-green */
+  border-radius: 999px;
+  /* box-shadow: 0 0 6px rgba(217, 255, 0, 0.7); */
+}
+
+.flame {
+  width: 180px;
+  height: 59px;
+  position: absolute;
+  left: -60px;
+  top: 6px;
+  z-index: -1;
+animation: flame-glow 900ms ease-out infinite;
+}
+
+@keyframes flame-glow {
+  0% {
+    transform: scale(0.92) translateY(1px);
+    filter: brightness(1);
   }
-  to {
-    transform: rotate(360deg);
+  20% {
+    transform: scale(1.05) translateY(0px);
+    filter: brightness(1.25);
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  40% {
+    transform: scale(0.92) translateY(0px);
+    filter: brightness(1);
   }
-}
+  60% {
+    transform: scale(1.05) translateY(0px);
+    filter: brightness(1.25);
+  }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-
-.crash-graph-container{
-  /* background:url("./assets/images/crash-game-bg.png");
-  background-size:cover; */
-  background: black;
+   0% {
+    transform: scale(0.92) translateY(1px);
+    filter: brightness(1);
+  }
+  20% {
+    transform: scale(1.05) translateY(0px);
+    filter: brightness(1.25);
+  }
+   80% {
+    transform: scale(0.92) translateY(1px);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1.05) translateY(0px);
+    filter: brightness(1.25);
+  }
 }

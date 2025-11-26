@@ -4,7 +4,6 @@ import { BettingPanel } from "@/components/BettingPanel";
 import { GameHistory } from "@/components/GameHistory";
 import { toast } from "sonner";
 
- 
 const CrashGame = () => {
   const [balance, setBalance] = useState(1000);
   const [currentBet, setCurrentBet] = useState(null);
@@ -140,7 +139,7 @@ const CrashGame = () => {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl md:text-5xl font-bold text-glow-primary">
-            🚀 Crash Game
+           Crash Game
           </h1>
           <p className="text-muted-foreground">
             Place your bet and cash out before the crash!

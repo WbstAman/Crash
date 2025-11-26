@@ -5,11 +5,10 @@
 }
 .game-subgrid {
     display: flex;
-    background: #1A191D;
-    border: 1px solid #28272D;
-    padding: 7px 16px 9px 24px;
-    gap: 26px;
-    border-radius: 20px;
+    /* background: #132633; */
+     /* padding: 6px 6px 12px 12px; */
+    gap: 12px;
+    border-radius: 12px;
 }
 .game-sidebar {
     max-width: 276px;

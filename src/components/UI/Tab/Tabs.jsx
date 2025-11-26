@@ -1,18 +1,36 @@
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import React from "react";
 
-export function Tabs() {
+export function Tabs({ tabs = [], setTabs }) {
+  const handleTabClick = (index) => {
+    if (!setTabs) return;
+    setTabs((prev) =>
+      prev.map((t, i) => ({
+        ...t,
+        isActive: i === index,
+      }))
+    );
+  };
+
   return (
-    <TabGroup>
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>Content 1</TabPanel>
-        <TabPanel>Content 2</TabPanel>
-        <TabPanel>Content 3</TabPanel>
-      </TabPanels>
-    </TabGroup>
-  )
+    <div className="flex justify-between items-center w-full max-w-[276px] bg-[#091B26] rounded-[48px] p-1.5">
+      {tabs?.map((item, index) => { 
+        const active =item?.isActive
+        return (
+          <button
+            key={index}
+            type="button"
+            onClick={() => handleTabClick(index)}
+            aria-pressed={active}
+            className={`p-2 rounded-3xl w-full text-sm font-semibold transition cursor-pointer  ${
+              active ? "bg-[#223845] text-white" : "text-gray-300"
+            }`}
+          >
+            <span>{item.title}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
 }
+
+export default Tabs;
