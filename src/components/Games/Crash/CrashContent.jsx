@@ -31,46 +31,45 @@ const CrashContent = () => {
 
     if (gameState === "waiting" && countdown === 0) {
       const newCrashPoint = generateCrashPoint();
-      // setCrashPoint(parseFloat(newCrashPoint));
-      setCrashPoint(parseFloat(2.5));
-      // setCrashPoint(parseFloat(50));
+      setCrashPoint(parseFloat(newCrashPoint));
       setGameState("running");
       setMultiplier(1.0);
     }
   }, [gameState, countdown]);
 
-  useEffect(() => {
-    if (gameState !== "running") return;
+useEffect(() => {
+  if (gameState !== "running") return;
 
-    const interval = setInterval(() => {
-      setMultiplier((prev) => {
-        const next = prev + 0.01;
+  const interval = setInterval(() => {
+    setMultiplier((prev) => {
+      const next = prev + 0.01;
 
-        if (next >= crashPoint) {
-          setGameState("crashed");
-          setHistory((prevHistory) => [
-            parseFloat(crashPoint.toFixed(2)),
-            ...prevHistory.slice(0, 19),
-          ]);
+      if (next >= crashPoint) {
+        setGameState("crashed");
+        setHistory((prevHistory) => [
+          parseFloat(crashPoint.toFixed(2)),
+          ...prevHistory.slice(0, 19),
+        ]);
 
-          if (currentBet) {
-            setCurrentBet(null);
-          }
-
-          setTimeout(() => {
-            setGameState("waiting");
-            setCountdown(5);
-          }, 2000);
-
-          return parseFloat(crashPoint.toFixed(2));
+        if (currentBet) {
+          setCurrentBet(null);
         }
 
-        return parseFloat(next.toFixed(2));
-      });
-    }, 100);
+        // ⬇️ Hold explosion for 1 second, then go to waiting (ProgressRingExample)
+        setTimeout(() => {
+          setGameState("waiting");
+          setCountdown(5);
+        }, 1000); // 1 second instead of 2000
 
-    return () => clearInterval(interval);
-  }, [gameState, crashPoint, currentBet]);
+        return parseFloat(crashPoint.toFixed(2));
+      }
+
+      return parseFloat(next.toFixed(2));
+    });
+  }, 30);
+
+  return () => clearInterval(interval);
+}, [gameState, crashPoint, currentBet]);
 
   const handlePlaceBet = (amount, autoCashout) => {
     if (balance < amount) return;
