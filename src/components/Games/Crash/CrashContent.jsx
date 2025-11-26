@@ -60,7 +60,7 @@ useEffect(() => {
         // ⬇️ Hold explosion for 1 second, then go to waiting (ProgressRingExample)
         setTimeout(() => {
           setGameState("waiting");
-          setCountdown(5);
+          setCountdown(3);
         }, 2000); // 1 second instead of 2000
 
         return parseFloat(crashPoint.toFixed(2));
