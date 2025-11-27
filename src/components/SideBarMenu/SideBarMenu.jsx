@@ -1,16 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdChevronLeft, MdChevronRight, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import SideBarTopMenu from "./components/SideBarTopMenu";
 
 const SideBarMenu = () => {
   const [isOpen, setIsOpen] = useState(true);
 
+    useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1280) {
+        setIsOpen(false);
+      }
+    };
+
+    handleResize(); // run on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+
   return (
     <div
-      className={`
-        relative h-full
-        transition-all duration-300
-        w-full
+      className={`absolute bg-[#00151F] z-10 xl:relative h-full transition-all duration-300 w-full
         ${isOpen ? "max-w-[250px]" : "max-w-13"}
       `}
     >

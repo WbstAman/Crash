@@ -1,17 +1,24 @@
-import { useState } from "react";
+ import { useState } from "react";
 import Header from "../../components/Header/Header";
 import SideBarMenu from "../../components/SideBarMenu/SideBarMenu";
-import CommonHeading from "../../components/UI/CommonHeading/CommonHeading";
-import { MdStarOutline } from "react-icons/md";
-import { AiOutlineExpand } from "react-icons/ai";
 
 const CustomLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="h-screen flex justify-between w-full mx-auto overflow-hidden">
+    <div className="h-screen flex justify-between w-full mx-auto overflow-hidden gap-[15px] xl:gap-[25px]">
       <SideBarMenu isOpen={isOpen} />
-      <div className="w-full max-w-[1140px] gap-3 ">
+
+      {/* MAIN WRAPPER */}
+      <div
+        className={`overflow-auto gap-3 transition-all duration-300 w-full hideScrollBar
+          ${
+            !isOpen
+              ? "max-w-[calc(100%-70px)] ml-auto" // subtract max-w-13 when sidebar open
+              : "max-w-full"
+          }
+        `}
+      >
         <Header toggleSidebar={() => setIsOpen(!isOpen)} />
         <main className="w-full">{children}</main>
       </div>

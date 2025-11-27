@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import explosion1 from "../../../../../assets/images/explosion1.webp";
+import fire3 from "../../../../../assets/images/fire3.png";
 import rocket from "../../../../../assets/images/rocket.png";
-import fire3 from "../../../../../assets/images/fire3.png"
 
 import "./crashGraph.css";
 
@@ -22,6 +22,8 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
   const pointsRef = useRef({ points: [], w: 0, h: 0 });
   const prevNormalizedRef = useRef(0);
   const startTimestampRef = useRef(null);
+  const bgCurveProgressRef = useRef(0); // 👈 NEW
+
 
   const [elapsed, setElapsed] = useState(0);
   const [windowIndex, setWindowIndex] = useState(0);
@@ -387,25 +389,24 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
     const strokeGrad = ctx.createLinearGradient(curveStartX, 0, endX, 0);
 
     if (gameState === "crashed") {
-      // ✨ smooth light orange
-      strokeGrad.addColorStop(0, "#FFE7C2");   // soft pastel orange highlight
-      strokeGrad.addColorStop(0.35, "#FFC27A"); // warm light orange
-      strokeGrad.addColorStop(0.65, "#FF9B42"); // sunset orange
-      strokeGrad.addColorStop(1, "#FF7A00");    // bright orange (not dark brown)
+      strokeGrad.addColorStop(0, "#FFE1E1");   // very light red
+      strokeGrad.addColorStop(0.35, "#FF9A9A"); // pastel red
+      strokeGrad.addColorStop(0.65, "#FF6B6B"); // warm soft red
+      strokeGrad.addColorStop(1, "#FF3D3D");    // bright red (not dark)
+
+      // // ✨ smooth light orange
+      // strokeGrad.addColorStop(0, "#FFE7C2");   // soft pastel orange highlight
+      // strokeGrad.addColorStop(0.35, "#FFC27A"); // warm light orange
+      // strokeGrad.addColorStop(0.65, "#FF9B42"); // sunset orange
+      // strokeGrad.addColorStop(1, "#FF7A00");    // bright orange (not dark brown)
     }
-    else if (score < 5) {
+    else {
       // yellow / gold
       strokeGrad.addColorStop(0, "#E3E3DC");
       strokeGrad.addColorStop(0.4, "#625817");
       strokeGrad.addColorStop(0.65, "#ffb24a");
       strokeGrad.addColorStop(1, "#827522");
-    } else {
-      strokeGrad.addColorStop(0, "#FFE1E1");   // very light red
-      strokeGrad.addColorStop(0.35, "#FF9A9A"); // pastel red
-      strokeGrad.addColorStop(0.65, "#FF6B6B"); // warm soft red
-      strokeGrad.addColorStop(1, "#FF3D3D");    // bright red (not dark)
     }
-
     ctx.save();
     ctx.lineWidth = 8;
     ctx.lineCap = "butt";
@@ -496,13 +497,17 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
     let textGlow;
 
     if (gameState === "crashed") {
-      textColor = "#FF7A00";         // orange
-      textGlow = "rgba(70,145,255,0.55)";  // little blue glow
-    } else if (score >= 5) {
+      // textColor = "#FF7A00";         // orange
+      // textGlow = "rgba(70,145,255,0.55)";  // little blue glow
       textColor = "#FF6B6B";              // smooth light red (matches the curve)
       textGlow = "rgba(255,140,140,0.55)"; // soft bright red glow — not too strong
+    }
+    // else if (score >= 5) {
+    //   // textColor = "#FF6B6B";              // smooth light red (matches the curve)
+    //   // textGlow = "rgba(255,140,140,0.55)"; // soft bright red glow — not too strong
 
-    } else {
+    // }
+    else {
       textColor = "#FFC645";         // gold
       textGlow = "rgba(255,200,60,0.45)";
     }
@@ -540,8 +545,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       const cur = displayMultiplierRef.current;
 
       // 🔥 IMPORTANT: don't chase multiplier when crashed
-      const target =
-        gameState === "crashed" ? cur : multiplier;
+      const target = gameState === "crashed" ? cur : multiplier;
 
       const stiffness = 8.0;
       const delta = target - cur;
@@ -551,6 +555,19 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       if (Math.abs(displayMultiplierRef.current - target) < 0.0005)
         displayMultiplierRef.current = target;
 
+      // 👇 NEW: animate background curve 0 → 1
+      const bgSpeed = 0.6; // increase for faster animation
+      if (gameState === "running") {
+        bgCurveProgressRef.current = Math.min(
+          1,
+          bgCurveProgressRef.current + bgSpeed * dt
+        );
+      } else if (gameState === "waiting") {
+        bgCurveProgressRef.current = 0;
+      } else if (gameState === "crashed") {
+        bgCurveProgressRef.current = 1;
+      }
+
       try {
         draw();
       } catch (e) {
@@ -558,6 +575,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       }
       rafRef.current = requestAnimationFrame(stepFn);
     };
+
 
     rafRef.current = requestAnimationFrame(stepFn);
     return () => {
@@ -623,6 +641,8 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       setPulseRight(false);
       prevNormalizedRef.current = 0;
       displayMultiplierRef.current = 1.0;
+
+
       // displayMultiplierRef.current = multiplier;
     }
     // else if (gameState === "crashed") {

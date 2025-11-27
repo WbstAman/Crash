@@ -23,7 +23,7 @@ const rows = [
 
 const PlayersBetsPanel = ({ icon }) => {
     return (
-        <div className="w-full max-w-sm rounded-2xl bg-[#071723] shadow-[0_12px_30px_rgba(0,0,0,0.7)]  text-sm text-slate-100 overflow-hidden">
+        <div className="max-w-full xl:max-w-sm rounded-2xl bg-[#071723] shadow-[0_12px_30px_rgba(0,0,0,0.7)]  text-sm text-slate-100 w-full overflow-auto">
             {/* Header */}
             <div className="flex items-center justify-between px-2 py-[13px] border-b border-[#091B26] ">
                 {/* Players count */}
@@ -54,7 +54,7 @@ const PlayersBetsPanel = ({ icon }) => {
             </div>
 
             {/* Body – scrollable list */}
-            <div className="max-h-[276px] overflow-y-auto bets-scroll px-4 py-2 space-y-1">
+            <div className="max-h-[276px] w-full md1:w-[276px] overflow-auto bets-scroll px-4 py-2 space-y-1">
                 {rows.map((row, idx) => (
                     <div
                         key={idx}

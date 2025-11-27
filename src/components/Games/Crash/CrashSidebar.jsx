@@ -38,10 +38,10 @@ const CrashSidebar = () => {
     });
   };
   return (
-    <div className="game-sidebar">
+    <div className="max-w-full py-4 md1:max-w-[250px] xl:max-w-[276px] xl:p-0  w-full">
       <Tabs tabs={tabs} setTabs={setTabs} />
 
-      <div className="mt-[14px]">
+      <div className="mt-3.5">
         <div className="mb-3.5">
           <InputField
             label="Bet Amount"
