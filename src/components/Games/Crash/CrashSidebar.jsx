@@ -38,10 +38,10 @@ const CrashSidebar = () => {
     });
   };
   return (
-    <div className="max-w-full py-4 md1:max-w-[250px] xl:max-w-[276px] xl:p-0  w-full">
+    <div className="flex flex-col-reverse py-4 w-full m-auto  sm:flex-col sm:max-w-full md1:max-w-[250px] xl:max-w-[276px] xl:p-0">
       <Tabs tabs={tabs} setTabs={setTabs} />
 
-      <div className="mt-3.5">
+      <div className="mb-3.5 sm:mt-3.5 sm:mb-0">
         <div className="mb-3.5">
           <InputField
             label="Bet Amount"

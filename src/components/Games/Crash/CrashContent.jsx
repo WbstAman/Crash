@@ -98,19 +98,20 @@ useEffect(() => {
 
   return (
     // <div className="mi bg-background text-foreground p-4 max-w-[834px] w-full mx-auto h-[699px]">
-    <div className="mi bg-background text-foreground w-full mx-auto md2:px-4 h-[500px] md1:h-[699px]">
+    <div className="mi bg-background text-foreground w-full mx-auto md2:px-4 h-[350px] md1:h-[699px]">
        <div className="mx-auto crash-graph-container p-6 rounded-md h-full">
         <div className="relative h-full flex items-center justify-center">
           {/* Just the ring for now */}
  
           {/* When you want to swap to graph: */}
-    
-     {/* <CrashGraph
+
+ <CrashGraph
               multiplier={multiplier}
               gameState={gameState}
               history={history}
-            /> */}
-          {gameState === "waiting" ? (
+            />
+    
+          {/* {gameState === "waiting" ? (
             <ProgressRingExample countdown={countdown} />
           ) : (
             <CrashGraph
@@ -118,7 +119,7 @@ useEffect(() => {
               gameState={gameState}
               history={history}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>

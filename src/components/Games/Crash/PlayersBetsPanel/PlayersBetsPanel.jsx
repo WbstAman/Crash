@@ -23,7 +23,8 @@ const rows = [
 
 const PlayersBetsPanel = ({ icon }) => {
     return (
-        <div className="max-w-full xl:max-w-sm rounded-2xl bg-[#071723] shadow-[0_12px_30px_rgba(0,0,0,0.7)]  text-sm text-slate-100 w-full overflow-auto">
+        // <div className="max-w-full xl:max-w-sm rounded-2xl bg-[#071723] shadow-[0_12px_30px_rgba(0,0,0,0.7)]  text-sm text-slate-100 w-full overflow-auto  bets-scroll ">
+        <div className="max-w-full xl:max-w-sm rounded-2xl bg-[#071723]   text-sm text-slate-100 w-full overflow-auto  bets-scroll  mt-3.5">
             {/* Header */}
             <div className="flex items-center justify-between px-2 py-[13px] border-b border-[#091B26] ">
                 {/* Players count */}

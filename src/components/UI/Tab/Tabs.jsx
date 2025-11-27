@@ -12,7 +12,7 @@ export function Tabs({ tabs = [], setTabs }) {
   };
 
   return (
-    <div className="flex justify-between items-center w-full max-w-[276px] bg-[#091B26] rounded-[48px] p-1.5">
+    <div className="flex justify-between items-center w-full max-w-full sm:max-w-[276px] bg-[#091B26] rounded-[48px] p-1.5">
       {tabs?.map((item, index) => { 
         const active =item?.isActive
         return (

@@ -815,7 +815,7 @@ const CrashGraph = ({
         ) : (
           <div className="relative rocket-img">
             <img src={fire3} alt={fire3} className="flame" />
-            <div className="w-[60px] h-[60px] rotate-[75deg] relative">
+            <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rotate-[75deg] relative">
               <img src={rocket} alt="rocket" className="w-full" />
             </div>
           </div>

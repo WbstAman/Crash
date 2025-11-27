@@ -78,10 +78,10 @@ const ProgressRingExample = ({ countdown = "00:30" }) => {
 
       {/* center content */}
       <div className="center-text aman">
-        <p className="text-2xl font-bold leading-[50px] text-orange-dark border-b border-white w-[150px] pb-3">
+        <p className="text-xl leading-[35px] pb-2 sm:text-2xl font-bold sm:leading-[50px] text-orange-dark border-b border-white w-[150px] sm:pb-3">
           Next Round
         </p>
-        <span className="text-[25px] font-normal">{`BETS ${countdown}`}</span>
+        <span className="text-md2 sm:text-[25px] font-normal">{`BETS ${countdown}`}</span>
       </div>
     </div>
   );

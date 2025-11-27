@@ -42,7 +42,7 @@ const Header = () => {
 
 
                {!isSearchOpen ?
-                  <div className='bg-gray-light rounded-md p-2  hidden sm:block' onClick={() => toggleSearch()}>
+                  <div className='bg-gray-light rounded-md p-[9.5px]  hidden sm:block' onClick={() => toggleSearch()}>
                      <IoSearchSharp className="text-white text-[25px] cursor-pointer" />
                   </div>
                   :
@@ -113,7 +113,7 @@ const Header = () => {
                />
             </div>
 
-            <div className='bg-gray-light rounded-md p-2  block sm:hidden' onClick={() => toggleSearch()}>
+            <div className='bg-gray-light rounded-md p-[9.5px]  block sm:hidden' onClick={() => toggleSearch()}>
                <IoSearchSharp className="text-white text-[25px] cursor-pointer" />
             </div>
          </div>

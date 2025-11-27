@@ -87,7 +87,7 @@
 /* OPTIONAL: make it a bit smaller on very tiny screens */
 @media (max-width: 460px) {
   .wrapper {
-    max-width: 240px;
-    max-height: 240px;
+    max-width: 280px;
+    max-height: 280px;
   }
 }
