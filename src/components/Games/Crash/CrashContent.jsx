@@ -104,14 +104,13 @@ useEffect(() => {
           {/* Just the ring for now */}
  
           {/* When you want to swap to graph: */}
-
- <CrashGraph
+    
+     {/* <CrashGraph
               multiplier={multiplier}
               gameState={gameState}
               history={history}
-            />
-    
-          {/* {gameState === "waiting" ? (
+            /> */}
+          {gameState === "waiting" ? (
             <ProgressRingExample countdown={countdown} />
           ) : (
             <CrashGraph
@@ -119,7 +118,7 @@ useEffect(() => {
               gameState={gameState}
               history={history}
             />
-          )} */}
+          )}
         </div>
       </div>
     </div>
