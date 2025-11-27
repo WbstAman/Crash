@@ -14,7 +14,6 @@ const SideBarMenu = () => {
 
     handleResize(); // run on mount
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

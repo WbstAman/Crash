@@ -22,8 +22,7 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
   const pointsRef = useRef({ points: [], w: 0, h: 0 });
   const prevNormalizedRef = useRef(0);
   const startTimestampRef = useRef(null);
-  const bgCurveProgressRef = useRef(0); // 👈 NEW
-
+  const bgCurveProgressRef = useRef(0);
 
   const [elapsed, setElapsed] = useState(0);
   const [windowIndex, setWindowIndex] = useState(0);
@@ -576,7 +575,6 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       rafRef.current = requestAnimationFrame(stepFn);
     };
 
-
     rafRef.current = requestAnimationFrame(stepFn);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -641,8 +639,6 @@ const CrashGraph = ({ multiplier = 1.0, gameState = "waiting", windowLength = 8 
       setPulseRight(false);
       prevNormalizedRef.current = 0;
       displayMultiplierRef.current = 1.0;
-
-
       // displayMultiplierRef.current = multiplier;
     }
     // else if (gameState === "crashed") {
