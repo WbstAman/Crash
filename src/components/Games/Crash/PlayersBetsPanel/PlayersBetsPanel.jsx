@@ -61,7 +61,7 @@ const PlayersBetsPanel = ({ icon }) => {
                         className="flex items-center gap-2 text-[13px] leading-tight"
                     >
                         {/* Name / Hidden */}
-                        <div className="w-[40%] flex items-center gap-1 text-gray text-[14px] font-instrumentSans">
+                        <div className="w-[40%] flex items-center gap-1 text-gray text-[14px] font-InstrumentSansMedium">
                             {row.hidden && (
                                 <HiddenIcon className="text-xs text-slate-400" />
                             )}

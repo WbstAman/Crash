@@ -21,10 +21,10 @@ const InputField = ({
       {/* Labels Row */}
       {(label || rightLabel) && (
         <div className="flex justify-between items-center">
-          <label className="text-gray text-[14px] font-bold font-instrumentSans leading-[17px]">
+          <label className="text-gray text-[14px] font-bold font-InstrumentSansMedium leading-[17px]">
             {label}
           </label>
-          <label className="text-gray text-[14px] font-bold font-instrumentSans leading-[17px]">
+          <label className="text-gray text-[14px] font-bold font-InstrumentSansMedium leading-[17px]">
             {rightLabel}
           </label>
         </div>
@@ -40,7 +40,7 @@ const InputField = ({
             disabled={disabled}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="flex-1 px-2 py-2.5 text-white font-semibold outline-none border-none bg-transparent font-instrumentSans text-[14px] w-full"/>
+            className="flex-1 px-2 py-2.5 text-white font-semibold outline-none border-none bg-transparent font-InstrumentSansMedium text-[14px] w-full"/>
 
           {icon && (
             <span className="ml-2 flex items-center justify-center">

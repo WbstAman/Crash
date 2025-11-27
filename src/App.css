@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 #root {
-  /* max-width: 1480px; */
+  max-width: 1480px;
   width: 100%;
   margin: 0 auto;
   padding: 0px 20px;
@@ -9,14 +9,26 @@
 }
 
 @font-face {
-  font-family: "InstrumentSans";
+  font-family: "InstrumentSansMedium";
   src: url("./assets/fonts/InstrumentSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
+@font-face {
+  font-family: "InstrumentSansSemiBold";
+  src: url("./assets/fonts/InstrumentSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "InstrumentBold";
+  src: url("./assets/fonts/InstrumentSans-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
 
 * {
-  font-family: "InstrumentSans";
+  font-family: "InstrumentSansMedium";
 }
 
 @theme {
@@ -33,6 +45,8 @@
   --color-gray: #92aab7;
 
   --color-yellow-dark: #eaff00;
+  --color-yellow-dull: #C7D900;
+
   --color-orange-dark: #ff9d02;
 
   --color-primary-gray: "#0f2a3d";
@@ -53,7 +67,12 @@
 
   /* Fonts */
 
-  --font-instrumentSans: "InstrumentSans", sans-serif;
+  --font-InstrumentSansMedium: "InstrumentSansMedium", sans-serif;
+  --font-InstrumentSansSemiBold: "InstrumentSansSemiBold", sans-serif;
+  --font-InstrumentBold: "InstrumentBold", sans-serif;
+  
+
+  
   --font-collegeblock: "collegeblock", sans-serif;
   --font-roboto: "roboto", sans-serif;
 

@@ -12,7 +12,7 @@ const CustomButton = ({
 }) => {
   // tailwind style mappings
   const variantStyles = {
-    default: "bg-yellow-dark text-black",
+    default: "bg-yellow-dark text-black hover:bg-yellow-dull",
     primary: "bg-gray-light text-white",
     secondary: "bg-green-600 hover:bg-green-700 text-white",
     outline: "border border-gray-400 text-gray-700 hover:bg-gray-200",
@@ -25,7 +25,7 @@ const CustomButton = ({
       disabled={disabled}
       style={{ maxWidth: size !== "auto" ? `${size}px` : "auto" }}
       className={`
-         flex items-center justify-center gap-2
+         flex items-center justify-center gap-2 font-InstrumentSansSemiBold
         text-black cursor-pointer 
         rounded-lg p-2.5 font-bold w-full transition
         ${disabled ? "bg-gray-400 cursor-not-allowed" : variantStyles[variant]}
